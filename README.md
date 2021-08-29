@@ -53,3 +53,25 @@ Installing the plugin into a server is now as simple as copying the built jar at
 ```
 mv target/ButtplugMc-0.0.1.jar $MINECRAFT_SERVER_PATH/plugins
 ```
+
+# How to use it
+
+Once you have installed the plugin you will need to run [Intiface](https://intiface.com/desktop/) on your computer. This is the server which will actually communicate with your toys, usually via bluetooth. This plugin simply sends commands to the Intiface server. I personally use the [CLI version](https://github.com/intiface/intiface-cli-rs), because I prefer terminally things.
+
+Now, you should be able to turn on your toy, and start the server.
+
+```
+java -Xmx1024M -Xmms1024M -jar spigot.jar nogui
+```
+
+You should see a log saying something like:
+
+```
+[ButtplugMC] Enabling ButtplugMC...
+[ButtplugMC] searching for toys...
+[ButtplugMC] searching for toys...
+[ButtplugMC] found device: Sexy Toy 9000
+[ButtplugMC] ButtplugMC is enabled.
+```
+
+It might take a few seconds to find the toy. If it takes longer than that, try restarting the server. If it still doesn't work, feel free to file an Issue.
