@@ -5,6 +5,9 @@ author: Psiloclast
 description: Control your sex toys from within Minecraft
 api-version: 1.17
 commands:
+  add-toy:
+    description: Connect your toy!
+    usage: /add-toy <ip>
   vibrate:
     description: Manually set your toy's level (level must be between 0 and 100)
     usage: /vibrate <level>

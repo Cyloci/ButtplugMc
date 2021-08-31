@@ -1,7 +1,11 @@
 package com.psiloclast.buttplugmc.listeners;
 
+import java.util.HashMap;
+import java.util.UUID;
+
 import com.psiloclast.utils.Sleep;
-import io.buttplug.ButtplugDevice;
+
+import io.buttplug.ButtplugClient;
 
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -13,11 +17,11 @@ public class VibrateOnDamage implements Listener {
 
   private final String DAMAGE_VIBRATE_OPTIONS = "damage-vibrate-options";
   private final JavaPlugin plugin;
-  private final ButtplugDevice device;
+  private final HashMap<UUID, ButtplugClient> buttplugClients;
 
-  public VibrateOnDamage(JavaPlugin plugin, ButtplugDevice device) {
+  public VibrateOnDamage(JavaPlugin plugin, HashMap<UUID, ButtplugClient> buttplugClients) {
     this.plugin = plugin;
-    this.device = device;
+    this.buttplugClients = buttplugClients;
     this.plugin.getConfig().addDefault(DAMAGE_VIBRATE_OPTIONS + ".level", 50);
     this.plugin.getConfig().addDefault(DAMAGE_VIBRATE_OPTIONS + ".duration", 250);
   }
@@ -27,10 +31,17 @@ public class VibrateOnDamage implements Listener {
     if (!(event.getEntity() instanceof Player) || !(event.getDamager() instanceof Player)) {
       return;
     }
+    Player player = (Player) event.getEntity();
+    ButtplugClient client = this.buttplugClients.get(player.getUniqueId());
+    if (client == null) {
+      return;
+    }
     int level = this.plugin.getConfig().getInt(DAMAGE_VIBRATE_OPTIONS + ".level");
     int duration = this.plugin.getConfig().getInt(DAMAGE_VIBRATE_OPTIONS + ".duration");
-    device.vibrate(level / 100.0);
-    Sleep.sleep(duration);
-    device.vibrate(0.0);
+    client.getDevices().values().forEach(device -> {
+      device.vibrate(level / 100.0);
+      Sleep.sleep(duration);
+      device.vibrate(0.0);
+    });
   }
 }
