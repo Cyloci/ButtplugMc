@@ -2,6 +2,7 @@ package com.psiloclast.buttplugmc;
 
 import com.psiloclast.buttplugmc.commands.VibrateCommand;
 import com.psiloclast.buttplugmc.listeners.VibrateOnBlockBreak;
+import com.psiloclast.buttplugmc.listeners.VibrateOnDamage;
 import com.psiloclast.utils.Plugin;
 import com.psiloclast.utils.Sleep;
 import io.buttplug.ButtplugClient;
@@ -21,6 +22,7 @@ public class ButtplugMc extends Plugin {
 
     registerCommandHandler("vibrate", new VibrateCommand(this, device));
     registerListener(new VibrateOnBlockBreak(this, device));
+    registerListener(new VibrateOnDamage(this, device));
 
     getConfig().options().copyDefaults(true);
     saveConfig();
