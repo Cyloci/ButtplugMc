@@ -50,7 +50,8 @@ public class AddToyCommand implements CommandHandler {
         return true;
       }
     }
-    client.stopScanning();
+    // Keep scanning so toy will reconnect if bluetooth dies for whatever reason.
+    // client.stopScanning();
     buttplugClients.put(player.getUniqueId(), client);
     player.sendMessage(ChatColor.AQUA + "Found the following toys!");
     client.getDevices().values().forEach(device -> {
