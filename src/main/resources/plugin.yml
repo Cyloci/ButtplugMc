@@ -4,6 +4,7 @@ version: 0.0.1
 author: Psiloclast
 description: Control your sex toys from within Minecraft
 api-version: 1.17
+depend: [CommandAPI]
 commands:
   add-toy:
     description: Connect your toy!

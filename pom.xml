@@ -19,6 +19,10 @@
             <name>jcenter-bintray</name>
             <url>http://jcenter.bintray.com</url>
         </repository>
+        <repository>
+            <id>jitpack.io</id>
+            <url>https://jitpack.io</url>
+        </repository>
     </repositories>
     <build>
         <plugins>
@@ -57,6 +61,12 @@
             <groupId>io.buttplug</groupId>
             <artifactId>buttplug</artifactId>
             <version>0.0.1</version>
+        </dependency>
+        <dependency>
+            <groupId>dev.jorel.CommandAPI</groupId>
+            <artifactId>commandapi-core</artifactId>
+            <version>6.3.0</version>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
 </project>
