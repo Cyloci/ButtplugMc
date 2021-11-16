@@ -2,11 +2,19 @@
 
 _Mining blocks and stroking cocks!_
 
-![logo.png](logo.png)
+![logo.png](./images/logo.png)
 
 This Spigot (butt)plugin allows you (or anyone else, if you choose) to control your sex toys from within Minecraft!
 
 We accept [Pull Requests](/pulls)!
+
+## Table of Contents
+
+- [How to build](#how-to-build)
+- [How to use it](#how-to-use-it)
+- [Commands](#commands)
+- [Event listeners](#event-listeners)
+- [Redstone](#redstone)
 
 # How to build
 
@@ -64,6 +72,8 @@ Now, you should be able to turn on your toy, and start the server.
 java -Xmx1024M -Xmms1024M -jar spigot.jar nogui
 ```
 
+Now log in, and try running `/add-toy`.
+
 You should see a log saying something like:
 
 ```
@@ -74,4 +84,34 @@ You should see a log saying something like:
 [ButtplugMC] ButtplugMC is enabled.
 ```
 
-It might take a few seconds to find the toy. If it takes longer than that, try restarting the server. If it still doesn't work, feel free to file an Issue.
+It might take a few seconds to find the toy.
+
+If it doesn't find a toy, try:
+
+- restarting the server
+- restarting Intiface
+- turning the toy off and on again
+
+If it still doesn't work, feel free to file an Issue.
+
+# Commands
+
+- `/add-toy` - Connect your toy to an Intiface server and search for a single vibrate-based toy.
+- `/vibrate [strength=0-100]` - Manually vibrate your toy
+
+# Event listeners
+
+- Mine a block and the toy will vibrate (configurable)
+- Take damage and they toy will vibrate (configurable)
+
+# Redstone
+
+You can even control your toys with Redstone!
+
+Type the following into a Command Block and give it a redstone signal and your toy should vibrate!
+
+`execute as PLAYER_NAME run vibrate 100`
+
+The following simple build alternates between `execute as PLAYER_NAME run vibrate 100` and `execute as PLAYER_NAME run vibrate 0` to make the toy turn off and on again every 0.4 seconds.
+
+![command-blocks.png](./images/command-blocks.png)
