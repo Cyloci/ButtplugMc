@@ -27,13 +27,10 @@ public class AddToyCommand implements CommandHandler {
 
   @Override
   public boolean handleCommand(Player player, String[] args) {
-    if (args.length != 1) {
-      player.sendMessage(ChatColor.RED + "Usage: /add-toy <ip>");
-      return true;
-    }
+    String host = player.getAddress().getHostName();
     URI address;
     try {
-      address = new URI("ws://" + args[0] + ":12345/buttplug");
+      address = new URI("ws://" + host + ":12345/buttplug");
     } catch (URISyntaxException e) {
       this.plugin.getLogger().info(e.toString());
       return true;
@@ -45,7 +42,7 @@ public class AddToyCommand implements CommandHandler {
       player.sendMessage(ChatColor.AQUA + "Searching for toys...");
       Sleep.sleep(1000);
       attempts++;
-      if (attempts == 3) {
+      if (attempts == 5) {
         player.sendMessage(ChatColor.RED + "Couldn't find any toys.");
         return true;
       }
