@@ -27,18 +27,23 @@ public class AddToyCommand implements CommandHandler {
 
   @Override
   public boolean handleCommand(Player player, String[] args) {
-    String host = player.getAddress().getHostName();
-    URI address;
-    try {
-      address = new URI("ws://" + host + ":12345/buttplug");
-    } catch (URISyntaxException e) {
-      this.plugin.getLogger().info(e.toString());
-      return true;
+    ButtplugClient client = buttplugClients.get(player.getUniqueId());
+    if (client == null || !client.isConnected()) {
+      String host = player.getAddress().getHostName();
+      URI address;
+      try {
+        address = new URI("ws://" + host + ":12345/buttplug");
+      } catch (URISyntaxException e) {
+        this.plugin.getLogger().info(e.toString());
+        return true;
+      }
+      client = connectButtplug(address);
+      buttplugClients.put(player.getUniqueId(), client);
     }
-    ButtplugClient client = connectButtplug(address);
-    client.startScanning();
+
     int attempts = 0;
     while (client.getDevices().size() == 0) {
+      client.startScanning();
       player.sendMessage(ChatColor.AQUA + "Searching for toys...");
       Sleep.sleep(1000);
       attempts++;
@@ -47,9 +52,7 @@ public class AddToyCommand implements CommandHandler {
         return true;
       }
     }
-    // Keep scanning so toy will reconnect if bluetooth dies for whatever reason.
-    // client.stopScanning();
-    buttplugClients.put(player.getUniqueId(), client);
+
     player.sendMessage(ChatColor.AQUA + "Found the following toys!");
     client.getDevices().values().forEach(device -> {
       player.sendMessage(ChatColor.AQUA + device.name);
