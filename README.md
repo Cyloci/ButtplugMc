@@ -8,8 +8,10 @@ This Spigot (butt)plugin allows you (or anyone else, if you choose) to control y
 
 We accept [Pull Requests](/pulls)!
 
-## Table of Contents
+# Table of contents
 
+- [ButtplugMC](#buttplugmc)
+- [Table of contents](#table-of-contents)
 - [How to build](#how-to-build)
 - [How to use it](#how-to-use-it)
 - [Commands](#commands)
@@ -52,7 +54,7 @@ This is so we can use it as a dependency in our `pom.xml`.
 Once you've done the above, you can now build this plugin.
 
 ```
-cd buttplug-mc
+cd ButtplugMC
 mvn package
 ```
 
@@ -69,7 +71,7 @@ Once you have installed the plugin you will need to run [Intiface](https://intif
 Now, you should be able to turn on your toy, and start the server.
 
 ```
-java -Xmx1024M -Xmms1024M -jar spigot.jar nogui
+java -Xmx1024M -Xms1024M -jar server.jar nogui
 ```
 
 Now log in, and try running `/add-toy`.
@@ -88,8 +90,8 @@ It might take a few seconds to find the toy.
 
 If it doesn't find a toy, try:
 
-- restarting the server
-- restarting Intiface
+- restarting the Minecraft server
+- restarting the Intiface server
 - turning the toy off and on again
 
 If it still doesn't work, feel free to file an Issue.
