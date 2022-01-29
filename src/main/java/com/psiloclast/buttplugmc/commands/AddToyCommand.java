@@ -5,7 +5,6 @@ import java.net.URISyntaxException;
 import java.util.HashMap;
 import java.util.UUID;
 
-import com.psiloclast.utils.CommandHandler;
 import com.psiloclast.utils.Sleep;
 
 import io.buttplug.ButtplugClient;
@@ -15,7 +14,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
-public class AddToyCommand implements CommandHandler {
+public class AddToyCommand {
 
   private final JavaPlugin plugin;
   private final HashMap<UUID, ButtplugClient> buttplugClients;
@@ -25,8 +24,7 @@ public class AddToyCommand implements CommandHandler {
     this.buttplugClients = buttplugClients;
   }
 
-  @Override
-  public boolean handleCommand(Player player, String[] args) {
+  public void handleCommand(Player player) {
     ButtplugClient client = buttplugClients.get(player.getUniqueId());
     if (client == null || !client.isConnected()) {
       String host = player.getAddress().getHostName();
@@ -35,7 +33,7 @@ public class AddToyCommand implements CommandHandler {
         address = new URI("ws://" + host + ":12345/buttplug");
       } catch (URISyntaxException e) {
         this.plugin.getLogger().info(e.toString());
-        return true;
+        return;
       }
       client = connectButtplug(address);
       buttplugClients.put(player.getUniqueId(), client);
@@ -49,7 +47,7 @@ public class AddToyCommand implements CommandHandler {
       attempts++;
       if (attempts == 5) {
         player.sendMessage(ChatColor.RED + "Couldn't find any toys.");
-        return true;
+        return;
       }
     }
 
@@ -64,7 +62,7 @@ public class AddToyCommand implements CommandHandler {
       Sleep.sleep(250);
       device.vibrate(0.0);
     });
-    return true;
+    return;
   }
 
   private ButtplugClient connectButtplug(URI address) {
