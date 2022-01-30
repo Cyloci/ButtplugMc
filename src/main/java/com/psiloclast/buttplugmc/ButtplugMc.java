@@ -1,7 +1,7 @@
 package com.psiloclast.buttplugmc;
 
-import com.psiloclast.buttplugmc.commands.AddToyCommand;
 import com.psiloclast.buttplugmc.commands.VibrateCommand;
+import com.psiloclast.buttplugmc.listeners.ConnectToIntifaceOnLogin;
 import com.psiloclast.buttplugmc.listeners.VibrateOnBlockBreak;
 import com.psiloclast.buttplugmc.listeners.VibrateOnDamage;
 
@@ -12,28 +12,17 @@ import dev.jorel.commandapi.CommandAPI;
 import dev.jorel.commandapi.CommandAPICommand;
 import dev.jorel.commandapi.CommandAPIConfig;
 import dev.jorel.commandapi.arguments.DoubleArgument;
-import io.buttplug.ButtplugClient;
-import java.util.HashMap;
-import java.util.UUID;
 
 public class ButtplugMc extends JavaPlugin {
 
-  private HashMap<UUID, ButtplugClient> buttplugClients;
+  private ButtplugClientManager clientManager;
 
   @Override
   public void onLoad() {
-    this.buttplugClients = new HashMap<>();
-
+    this.clientManager = new ButtplugClientManager(this);
     CommandAPI.onLoad(new CommandAPIConfig());
 
-    AddToyCommand addToyCommand = new AddToyCommand(this, this.buttplugClients);
-    VibrateCommand vibrateCommand = new VibrateCommand(this.buttplugClients);
-
-    new CommandAPICommand("add-toy")
-        .executesPlayer((player, args) -> {
-          addToyCommand.handleCommand(player);
-        })
-        .register();
+    VibrateCommand vibrateCommand = new VibrateCommand(this.clientManager);
 
     new CommandAPICommand("vibrate")
         .withArguments(new DoubleArgument("level"))
@@ -56,8 +45,9 @@ public class ButtplugMc extends JavaPlugin {
   public void onEnable() {
     CommandAPI.onEnable(this);
 
-    getServer().getPluginManager().registerEvents(new VibrateOnBlockBreak(this, buttplugClients), this);
-    getServer().getPluginManager().registerEvents(new VibrateOnDamage(this, buttplugClients), this);
+    getServer().getPluginManager().registerEvents(new ConnectToIntifaceOnLogin(this.clientManager), this);
+    getServer().getPluginManager().registerEvents(new VibrateOnBlockBreak(this, this.clientManager), this);
+    getServer().getPluginManager().registerEvents(new VibrateOnDamage(this, this.clientManager), this);
 
     getConfig().options().copyDefaults(true);
     saveConfig();
@@ -66,9 +56,9 @@ public class ButtplugMc extends JavaPlugin {
 
   @Override
   public void onDisable() {
-    buttplugClients.values().forEach(buttplugClient -> {
-      buttplugClient.stopAllDevices();
-      buttplugClient.close();
+    this.clientManager.getClients().forEach(client -> {
+      client.stopAllDevices();
+      client.close();
     });
     saveConfig();
     getLogger().info("Buttplug MC is disabled.");

@@ -3,27 +3,23 @@ package com.psiloclast.buttplugmc.commands;
 import io.buttplug.ButtplugClient;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
-import java.util.HashMap;
-import java.util.UUID;
+
+import com.psiloclast.buttplugmc.ButtplugClientManager;
 
 public class VibrateCommand {
 
-  private final HashMap<UUID, ButtplugClient> buttplugClients;
+  private final ButtplugClientManager clientManager;
 
-  public VibrateCommand(HashMap<UUID, ButtplugClient> buttplugClients) {
-    this.buttplugClients = buttplugClients;
+  public VibrateCommand(ButtplugClientManager clientManager) {
+    this.clientManager = clientManager;
   }
 
   public void handleCommand(Player player, double level) {
-    ButtplugClient client = this.buttplugClients.get(player.getUniqueId());
-    if (client == null || !client.isConnected()) {
-      player.sendMessage(ChatColor.RED + "You must first connect your toy with /add-toy");
-      return;
-    }
     if (level < 0 || level > 100) {
       player.sendMessage(ChatColor.RED + "'level' must be between 0 and 100");
       return;
     }
+    ButtplugClient client = this.clientManager.getClient(player);
     client.getDevices().values().forEach(device -> {
       device.vibrate(level / 100.0);
     });

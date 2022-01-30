@@ -1,8 +1,6 @@
 package com.psiloclast.buttplugmc.listeners;
 
-import java.util.HashMap;
-import java.util.UUID;
-
+import com.psiloclast.buttplugmc.ButtplugClientManager;
 import com.psiloclast.utils.Sleep;
 
 import io.buttplug.ButtplugClient;
@@ -17,11 +15,11 @@ public class VibrateOnDamage implements Listener {
 
   private final String DAMAGE_VIBRATE_OPTIONS = "damage-vibrate-options";
   private final JavaPlugin plugin;
-  private final HashMap<UUID, ButtplugClient> buttplugClients;
+  private final ButtplugClientManager clientManager;
 
-  public VibrateOnDamage(JavaPlugin plugin, HashMap<UUID, ButtplugClient> buttplugClients) {
+  public VibrateOnDamage(JavaPlugin plugin, ButtplugClientManager clientManager) {
     this.plugin = plugin;
-    this.buttplugClients = buttplugClients;
+    this.clientManager = clientManager;
     this.plugin.getConfig().addDefault(DAMAGE_VIBRATE_OPTIONS + ".level", 50);
     this.plugin.getConfig().addDefault(DAMAGE_VIBRATE_OPTIONS + ".duration", 250);
   }
@@ -32,7 +30,7 @@ public class VibrateOnDamage implements Listener {
       return;
     }
     Player player = (Player) event.getEntity();
-    ButtplugClient client = this.buttplugClients.get(player.getUniqueId());
+    ButtplugClient client = this.clientManager.getClient(player);
     if (client == null) {
       return;
     }
