@@ -1,4 +1,4 @@
-package com.psiloclast.utils;
+package com.cyloci.utils;
 
 public class Sleep {
   public static void sleep(int millis) {

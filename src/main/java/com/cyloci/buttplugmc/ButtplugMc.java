@@ -1,9 +1,9 @@
-package com.psiloclast.buttplugmc;
+package com.cyloci.buttplugmc;
 
-import com.psiloclast.buttplugmc.commands.VibrateCommand;
-import com.psiloclast.buttplugmc.listeners.ConnectToIntifaceOnLogin;
-import com.psiloclast.buttplugmc.listeners.VibrateOnBlockBreak;
-import com.psiloclast.buttplugmc.listeners.VibrateOnDamage;
+import com.cyloci.buttplugmc.commands.VibrateCommand;
+import com.cyloci.buttplugmc.listeners.ConnectToIntifaceOnLogin;
+import com.cyloci.buttplugmc.listeners.VibrateOnBlockBreak;
+import com.cyloci.buttplugmc.listeners.VibrateOnDamage;
 
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;

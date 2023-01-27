@@ -1,4 +1,4 @@
-package com.psiloclast.buttplugmc;
+package com.cyloci.buttplugmc;
 
 import java.net.InetAddress;
 import java.net.URI;
@@ -7,7 +7,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.UUID;
 
-import com.psiloclast.utils.Sleep;
+import com.cyloci.utils.Sleep;
 
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;

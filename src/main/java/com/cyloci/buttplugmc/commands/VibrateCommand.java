@@ -1,10 +1,10 @@
-package com.psiloclast.buttplugmc.commands;
+package com.cyloci.buttplugmc.commands;
 
 import io.buttplug.ButtplugClient;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
-import com.psiloclast.buttplugmc.ButtplugClientManager;
+import com.cyloci.buttplugmc.ButtplugClientManager;
 
 public class VibrateCommand {
 

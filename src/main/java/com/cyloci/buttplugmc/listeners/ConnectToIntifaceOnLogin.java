@@ -1,6 +1,6 @@
-package com.psiloclast.buttplugmc.listeners;
+package com.cyloci.buttplugmc.listeners;
 
-import com.psiloclast.buttplugmc.ButtplugClientManager;
+import com.cyloci.buttplugmc.ButtplugClientManager;
 
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;

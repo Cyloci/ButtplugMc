@@ -1,7 +1,7 @@
-package com.psiloclast.buttplugmc.listeners;
+package com.cyloci.buttplugmc.listeners;
 
-import com.psiloclast.buttplugmc.ButtplugClientManager;
-import com.psiloclast.utils.Sleep;
+import com.cyloci.buttplugmc.ButtplugClientManager;
+import com.cyloci.utils.Sleep;
 
 import io.buttplug.ButtplugClient;
 
