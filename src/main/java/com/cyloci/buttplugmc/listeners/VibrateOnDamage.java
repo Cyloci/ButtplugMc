@@ -8,7 +8,7 @@ import io.buttplug.ButtplugClient;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class VibrateOnDamage implements Listener {
@@ -25,8 +25,8 @@ public class VibrateOnDamage implements Listener {
   }
 
   @EventHandler
-  public void onEntityDamage(EntityDamageByEntityEvent event) {
-    if (!(event.getEntity() instanceof Player) || !(event.getDamager() instanceof Player)) {
+  public void onEntityDamage(EntityDamageEvent event) {
+    if (!(event.getEntity() instanceof Player)) {
       return;
     }
     Player player = (Player) event.getEntity();
