@@ -2,7 +2,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.cyloci.buttplugmc</groupId>
     <artifactId>ButtplugMc</artifactId>
-    <version>0.0.4</version>
+    <version>0.0.5</version>
     <name>Buttplug MC</name>
     <repositories>
         <repository>
@@ -68,7 +68,7 @@
         <dependency>
             <groupId>org.spigotmc</groupId>
             <artifactId>spigot-api</artifactId>
-            <version>1.19.3-R0.1-SNAPSHOT</version>
+            <version>1.19.4-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
@@ -77,9 +77,9 @@
             <version>0.0.1</version>
         </dependency>
         <dependency>
-            <groupId>dev.jorel.CommandAPI</groupId>
+            <groupId>dev.jorel</groupId>
             <artifactId>commandapi-shade</artifactId>
-            <version>8.7.4</version>
+            <version>8.8.0</version>
         </dependency>
     </dependencies>
 </project>
