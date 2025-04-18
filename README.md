@@ -29,7 +29,7 @@ cd buttplug-rs-ffi/java
 
 ...and build it ourselves.
 
-If you get any errors, feel free to create an [Issue](/issues), or ask for help in `#questions-and-support` in the official [Buttplug.io Discord](https://discord.buttplug.io).
+If you get any errors, feel free to create an [Issue](/issues), or ask for help in [`#ButtplugMC` thread](https://discord.com/channels/353303527587708932/909969954781151304) in the official [Buttplug.io Discord](https://discord.buttplug.io).
 
 ```
 ./gradlew build
